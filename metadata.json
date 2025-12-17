@@ -1,0 +1,9 @@
+{
+  "name": "Copy of CityLink",
+  "description": "A comprehensive civic issue reporting and management platform connecting citizens, city administrators, and super administrators.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone",
+    "geolocation"
+  ]
+}

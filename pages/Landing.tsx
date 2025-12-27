@@ -223,46 +223,46 @@ export const LandingPage: React.FC = () => {
             </div>
 
             {/* Right Visual - Chennai Central Image */}
-            <div className="order-1 md:order-2 mt-8 md:mt-0 hidden md:block opacity-0 animate-fade-in-up delay-300">
-                <div className="bg-white dark:bg-gray-800 rounded-[2.5rem] p-6 shadow-2xl space-y-6 border border-gray-100 dark:border-gray-700 animate-float relative z-10 max-w-lg mx-auto transform rotate-1 hover:rotate-0 transition-transform duration-500">
+            <div className="order-1 md:order-2 mt-6 sm:mt-8 md:mt-0 opacity-0 animate-fade-in-up delay-300">
+                <div className="bg-white dark:bg-gray-800 rounded-2xl sm:rounded-[2.5rem] p-4 sm:p-6 shadow-2xl space-y-4 sm:space-y-6 border border-gray-100 dark:border-gray-700 animate-float relative z-10 max-w-lg mx-auto transform rotate-1 hover:rotate-0 transition-transform duration-500">
                     
                     {/* Decorative Blob */}
-                    <div className="absolute -top-12 -right-12 w-40 h-40 bg-yellow-200 dark:bg-yellow-900/30 rounded-full blur-3xl -z-10 animate-pulse"></div>
-                    <div className="absolute -bottom-12 -left-12 w-40 h-40 bg-green-200 dark:bg-green-900/30 rounded-full blur-3xl -z-10 animate-pulse" style={{animationDelay: '1s'}}></div>
+                    <div className="absolute -top-8 -right-8 sm:-top-12 sm:-right-12 w-32 h-32 sm:w-40 sm:h-40 bg-yellow-200 dark:bg-yellow-900/30 rounded-full blur-3xl -z-10 animate-pulse"></div>
+                    <div className="absolute -bottom-8 -left-8 sm:-bottom-12 sm:-left-12 w-32 h-32 sm:w-40 sm:h-40 bg-green-200 dark:bg-green-900/30 rounded-full blur-3xl -z-10 animate-pulse" style={{animationDelay: '1s'}}></div>
 
                     {/* Main Image */}
-                    <div className="relative overflow-hidden rounded-2xl h-64 md:h-80 shadow-lg group border-4 border-white dark:border-gray-700">
+                    <div className="relative overflow-hidden rounded-xl sm:rounded-2xl h-48 sm:h-64 md:h-80 shadow-lg group border-2 sm:border-4 border-white dark:border-gray-700">
                         <img 
                             src="https://lh3.googleusercontent.com/gps-cs-s/AG0ilSwJiFbmk56svXsYG7aZwcZEwtWNrsV2dIAvB2cW7TniKGe9SLvIK3PNjqltmLQSV9PzAE09CjziXZj2BaLL8MFtG9qrAUtgT7JJD23RPS1r6UioI-QZrjN4goDuTWTVOsvj299hNg=w675-h390-n-k-no" 
                             alt="Chennai Central Railway Station" 
                             className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" 
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
-                        <div className="absolute bottom-6 left-6 text-white">
-                            <p className="font-bold text-xl drop-shadow-md">Chennai Central</p>
-                            <p className="text-sm opacity-90 font-medium bg-green-600/80 px-2 py-0.5 rounded inline-block mt-1 backdrop-blur-sm">Hub of Tamil Nadu</p>
+                        <div className="absolute bottom-4 left-4 sm:bottom-6 sm:left-6 text-white">
+                            <p className="font-bold text-lg sm:text-xl drop-shadow-md">Chennai Central</p>
+                            <p className="text-xs sm:text-sm opacity-90 font-medium bg-green-600/80 px-2 py-0.5 rounded inline-block mt-1 backdrop-blur-sm">Hub of Tamil Nadu</p>
                         </div>
                     </div>
                     
                     {/* Live Badge */}
-                    <div className="absolute top-10 right-10 bg-white/95 dark:bg-gray-900/95 backdrop-blur-md px-4 py-2 rounded-full text-xs font-bold shadow-xl flex items-center gap-2 border border-gray-200 dark:border-gray-600 z-20">
-                        <span className="relative flex h-2.5 w-2.5">
+                    <div className="absolute top-4 right-4 sm:top-10 sm:right-10 bg-white/95 dark:bg-gray-900/95 backdrop-blur-md px-2 sm:px-4 py-1 sm:py-2 rounded-full text-[10px] sm:text-xs font-bold shadow-xl flex items-center gap-1.5 sm:gap-2 border border-gray-200 dark:border-gray-600 z-20">
+                        <span className="relative flex h-2 w-2 sm:h-2.5 sm:w-2.5">
                           <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
-                          <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-red-500"></span>
+                          <span className="relative inline-flex rounded-full h-2 w-2 sm:h-2.5 sm:w-2.5 bg-red-500"></span>
                         </span>
-                        Live System Active
+                        <span className="whitespace-nowrap">Live System Active</span>
                     </div>
 
                     {/* Floating Cards */}
-                    <div className="flex items-center gap-4 p-4 rounded-2xl bg-white dark:bg-gray-700 hover:bg-green-50 dark:hover:bg-gray-600 transition-colors shadow-lg border border-gray-100 dark:border-gray-600 transform translate-x-4">
-                        <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center text-green-600 shrink-0">
-                             <MapPin size={24} />
+                    <div className="flex items-center gap-3 sm:gap-4 p-3 sm:p-4 rounded-xl sm:rounded-2xl bg-white dark:bg-gray-700 hover:bg-green-50 dark:hover:bg-gray-600 transition-colors shadow-lg border border-gray-100 dark:border-gray-600 transform translate-x-2 sm:translate-x-4">
+                        <div className="w-10 h-10 sm:w-12 sm:h-12 bg-green-100 rounded-full flex items-center justify-center text-green-600 shrink-0">
+                             <MapPin size={20} className="sm:w-6 sm:h-6" />
                         </div>
-                        <div>
-                             <h3 className="font-bold text-gray-900 dark:text-white text-sm">Chennai Corp.</h3>
-                             <p className="text-xs text-gray-500">Zone 13 - Road Repaired</p>
+                        <div className="flex-1 min-w-0">
+                             <h3 className="font-bold text-gray-900 dark:text-white text-xs sm:text-sm truncate">Chennai Corp.</h3>
+                             <p className="text-[10px] sm:text-xs text-gray-500 truncate">Zone 13 - Road Repaired</p>
                         </div>
-                        <span className="ml-auto text-white font-bold text-[10px] uppercase bg-green-500 px-2 py-1 rounded-lg shadow-sm shadow-green-200">Resolved</span>
+                        <span className="ml-auto text-white font-bold text-[9px] sm:text-[10px] uppercase bg-green-500 px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-lg shadow-sm shadow-green-200 whitespace-nowrap shrink-0">Resolved</span>
                     </div>
                 </div>
             </div>

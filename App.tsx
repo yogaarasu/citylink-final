@@ -1,5 +1,5 @@
 import React, { useState, useEffect, createContext, useContext } from 'react';
-import { HashRouter, Routes, Route, Navigate, useLocation, useNavigate } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate, useLocation, useNavigate } from 'react-router-dom';
 import { User, UserRole } from './types';
 import { LucideIcon, Menu, X, Sun, Moon, LogOut, LayoutDashboard, FileText, User as UserIcon, MapPin, Users, Globe } from 'lucide-react';
 
@@ -621,7 +621,7 @@ const App = () => {
     <AuthContext.Provider value={{ user, login, logout }}>
       <ThemeContext.Provider value={{ isDark, toggleTheme }}>
         <LangContext.Provider value={{ lang, toggleLang, t }}>
-            <HashRouter>
+            <BrowserRouter>
             <Routes>
                 {/* Public Routes */}
                 <Route path="/" element={user ? <Navigate to="/dashboard-router" /> : <LandingPage />} />
@@ -687,7 +687,7 @@ const App = () => {
 
                 <Route path="*" element={<Navigate to="/" />} />
             </Routes>
-            </HashRouter>
+            </BrowserRouter>
         </LangContext.Provider>
       </ThemeContext.Provider>
     </AuthContext.Provider>

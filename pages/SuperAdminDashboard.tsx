@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { User, UserRole } from '../types';
 import { createUser, getAllCityAdmins, deleteUser, getAllIssues, updateUser } from '../services/storageService';
 import { MOCK_CITIES, CITY_RTO_CODES } from '../constants';
-import { UserPlus, AlertCircle, Trash2, X, Edit } from 'lucide-react';
+import { UserPlus, AlertCircle, Trash2, X, Edit, Search, Filter } from 'lucide-react';
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
 import { useLang } from '../App';
 
@@ -12,7 +12,12 @@ interface Props {
 
 export const SuperAdminDashboard: React.FC<Props> = ({ view }) => {
   const [admins, setAdmins] = useState<User[]>([]);
+  const [filteredAdmins, setFilteredAdmins] = useState<User[]>([]);
   const [showAddModal, setShowAddModal] = useState(false);
+  
+  // Filter State
+  const [searchTerm, setSearchTerm] = useState('');
+  const [filterDistrict, setFilterDistrict] = useState('');
   
   // Custom Delete Modal State
   const [userToDelete, setUserToDelete] = useState<User | null>(null);
@@ -40,10 +45,33 @@ export const SuperAdminDashboard: React.FC<Props> = ({ view }) => {
     try {
         const fetchedAdmins = await getAllCityAdmins();
         setAdmins(fetchedAdmins);
+        setFilteredAdmins(fetchedAdmins);
     } catch (e) {
         console.error("Failed to fetch admins");
     }
   };
+
+  // Filter admins based on search term and district
+  useEffect(() => {
+    let filtered = admins;
+
+    // Filter by district
+    if (filterDistrict) {
+      filtered = filtered.filter(admin => admin.city === filterDistrict);
+    }
+
+    // Filter by search term (id, name, email)
+    if (searchTerm.trim()) {
+      const term = searchTerm.toLowerCase().trim();
+      filtered = filtered.filter(admin => 
+        admin.id.toLowerCase().includes(term) ||
+        admin.name.toLowerCase().includes(term) ||
+        admin.email.toLowerCase().includes(term)
+      );
+    }
+
+    setFilteredAdmins(filtered);
+  }, [admins, searchTerm, filterDistrict]);
 
   const loadStats = async () => {
       try {
@@ -260,6 +288,56 @@ export const SuperAdminDashboard: React.FC<Props> = ({ view }) => {
         </div>
       )}
 
+      {/* Filter Section */}
+      <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700 p-4 mb-4">
+        <div className="flex flex-col md:flex-row gap-4">
+          {/* Search Input */}
+          <div className="flex-1 relative">
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
+            <input
+              type="text"
+              placeholder="Search by ID, Name, or Email..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="w-full pl-10 pr-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-green-500 outline-none"
+            />
+          </div>
+          
+          {/* District Filter */}
+          <div className="relative">
+            <Filter className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
+            <select
+              value={filterDistrict}
+              onChange={(e) => setFilterDistrict(e.target.value)}
+              className="pl-10 pr-8 py-2 rounded-lg border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-green-500 outline-none appearance-none bg-white"
+            >
+              <option value="">All Districts</option>
+              {MOCK_CITIES.map(city => (
+                <option key={city} value={city}>{t(city)}</option>
+              ))}
+            </select>
+          </div>
+
+          {/* Clear Filters Button */}
+          {(searchTerm || filterDistrict) && (
+            <button
+              onClick={() => {
+                setSearchTerm('');
+                setFilterDistrict('');
+              }}
+              className="px-4 py-2 text-sm text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg border border-gray-300 dark:border-gray-600"
+            >
+              Clear
+            </button>
+          )}
+        </div>
+        
+        {/* Results Count */}
+        <div className="mt-3 text-sm text-gray-500 dark:text-gray-400">
+          Showing {filteredAdmins.length} of {admins.length} administrators
+        </div>
+      </div>
+
       <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700 overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-left">
@@ -273,7 +351,7 @@ export const SuperAdminDashboard: React.FC<Props> = ({ view }) => {
               </tr>
             </thead>
             <tbody>
-              {admins.map(admin => (
+              {filteredAdmins.map(admin => (
                 <tr key={admin.id} className="border-b border-gray-100 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors">
                   <td className="p-4">
                       <span className="font-mono text-xs text-gray-700 dark:text-gray-300 bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded border border-gray-200 dark:border-gray-600">{admin.id}</span>
@@ -307,9 +385,11 @@ export const SuperAdminDashboard: React.FC<Props> = ({ view }) => {
                   </td>
                 </tr>
               ))}
-              {admins.length === 0 && (
+              {filteredAdmins.length === 0 && (
                 <tr>
-                  <td colSpan={5} className="p-8 text-center text-gray-500">No administrators found.</td>
+                  <td colSpan={5} className="p-8 text-center text-gray-500">
+                    {searchTerm || filterDistrict ? 'No administrators match your filters.' : 'No administrators found.'}
+                  </td>
                 </tr>
               )}
             </tbody>

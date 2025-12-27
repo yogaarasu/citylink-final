@@ -115,26 +115,26 @@ export const LandingPage: React.FC = () => {
 
       {/* --- NAVBAR --- */}
       <nav className="fixed top-0 w-full z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border-b border-gray-100 dark:border-gray-800 transition-all duration-300">
-        <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-            <h1 className="text-2xl font-bold text-green-600 flex items-center gap-2 cursor-pointer hover:scale-105 transition-transform opacity-0 animate-fade-in-down" onClick={() => window.scrollTo({top:0, behavior:'smooth'})}>
-            <div className="w-8 h-8 bg-green-600 rounded-lg flex items-center justify-center text-white shadow-lg shadow-green-200 dark:shadow-none">
-                <MapPin size={18} fill="currentColor" className="text-white" />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 sm:py-4 flex justify-between items-center">
+            <h1 className="text-xl sm:text-2xl font-bold text-green-600 flex items-center gap-2 cursor-pointer hover:scale-105 transition-transform opacity-0 animate-fade-in-down" onClick={() => window.scrollTo({top:0, behavior:'smooth'})}>
+            <div className="w-7 h-7 sm:w-8 sm:h-8 bg-green-600 rounded-lg flex items-center justify-center text-white shadow-lg shadow-green-200 dark:shadow-none shrink-0">
+                <MapPin size={16} className="sm:w-[18px] sm:h-[18px]" fill="currentColor" />
             </div>
-            CityLink
+            <span className="whitespace-nowrap">CityLink</span>
             </h1>
-            <div className="flex items-center gap-4 opacity-0 animate-fade-in-down delay-100">
+            <div className="flex items-center gap-2 sm:gap-4 opacity-0 animate-fade-in-down delay-100">
             <button 
                 onClick={toggleLang}
-                className="flex items-center gap-2 px-3 py-1.5 bg-gray-100 dark:bg-gray-800 rounded-full text-xs font-bold text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
+                className="flex items-center gap-1.5 sm:gap-2 px-2 sm:px-3 py-1 sm:py-1.5 bg-gray-100 dark:bg-gray-800 rounded-full text-[10px] sm:text-xs font-bold text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors shrink-0"
             >
-                <Globe size={14} />
-                {lang === 'en' ? 'தமிழ்' : 'English'}
+                <Globe size={12} className="sm:w-[14px] sm:h-[14px]" />
+                <span className="whitespace-nowrap">{lang === 'en' ? 'தமிழ்' : 'English'}</span>
             </button>
-            <div className="hidden sm:flex items-center gap-4">
-                <Link to="/login" className="text-gray-600 dark:text-gray-300 hover:text-green-600 font-medium text-sm transition-colors">
+            <div className="hidden sm:flex items-center gap-3 sm:gap-4">
+                <Link to="/login" className="text-gray-600 dark:text-gray-300 hover:text-green-600 font-medium text-xs sm:text-sm transition-colors whitespace-nowrap">
                     {t('login')}
                 </Link>
-                <Link to="/register" className="px-5 py-2 bg-green-600 hover:bg-green-700 text-white rounded-full font-bold text-sm shadow-lg shadow-green-200 dark:shadow-none transition-all hover:-translate-y-0.5">
+                <Link to="/register" className="px-4 sm:px-5 py-1.5 sm:py-2 bg-green-600 hover:bg-green-700 text-white rounded-full font-bold text-xs sm:text-sm shadow-lg shadow-green-200 dark:shadow-none transition-all hover:-translate-y-0.5 whitespace-nowrap">
                     {t('getStarted')}
                 </Link>
             </div>
@@ -142,10 +142,10 @@ export const LandingPage: React.FC = () => {
         </div>
       </nav>
 
-      <main className="flex-1 relative z-10 pt-20">
+      <main className="flex-1 relative z-10 pt-16 sm:pt-20">
         
         {/* --- HERO SECTION --- */}
-        <section className="min-h-[95vh] flex items-center relative pb-20 md:pb-0 overflow-hidden">
+        <section className="min-h-[90vh] sm:min-h-[95vh] flex items-center relative pb-12 sm:pb-20 md:pb-0 overflow-hidden pt-4 sm:pt-0">
             {/* Background Decor */}
             <div className="absolute top-0 right-0 w-2/3 h-full bg-gradient-to-l from-green-50 to-transparent dark:from-green-900/20 -z-10 opacity-70"></div>
             <div className="absolute top-20 left-10 w-72 h-72 bg-blue-100 dark:bg-blue-900/10 rounded-full blur-[100px] -z-10"></div>

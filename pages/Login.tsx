@@ -166,7 +166,7 @@ export const LoginPage: React.FC = () => {
        
        <div className="absolute top-4 right-4 z-20 flex items-center gap-3">
          <Link to="/" className="flex items-center gap-2 bg-white dark:bg-gray-800 px-3 py-1.5 rounded shadow text-sm border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
-             <Home size={16}/> Home
+             <Home size={16}/> {lang === 'ta' ? 'முகப்பு' : 'Home'}
          </Link>
          <button onClick={toggleLang} className="flex items-center gap-2 bg-white dark:bg-gray-800 px-3 py-1 rounded shadow text-sm border border-gray-200 dark:border-gray-700">
              <Globe size={16}/> {lang === 'en' ? 'தமிழ்' : 'English'}
